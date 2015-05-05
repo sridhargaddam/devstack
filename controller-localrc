@@ -1,0 +1,47 @@
+RECLONE=yes
+DEST=/opt/stack
+#OFFLINE=True
+DATA_DIR=$DEST/data
+SCREEN_LOGDIR=$DATA_DIR/logs
+LOGFILE=$SCREEN_LOGDIR/stack.sh.log
+LOGDAYS=1
+ 
+MYSQL_HOST=fdf8:f53b:82e4::179
+DATABASE_HOST=[fdf8:f53b:82e4::179]
+HOST_IP=fdf8:f53b:82e4::179
+SERVICE_HOST=[fdf8:f53b:82e4::179]
+RABBIT_HOST=IPv6Controller
+VNCSERVER_LISTEN="fdf8:f53b:82e4::179"
+VNCSERVER_PROXYCLIENT_ADDRESS="fdf8:f53b:82e4::179"
+
+ADMIN_PASSWORD=password
+MYSQL_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=token
+
+MULTI_HOST=1
+
+disable_service n-net
+disable_service h-eng
+disable_service h-api
+disable_service h-api-cfn
+disable_service h-api-cw
+disable_service n-xvnc
+disable_service tempest
+disable_service dstat
+enable_service q-svc q-agt q-dhcp q-l3 q-meta n-novnc
+
+### ML2 plugin ###
+Q_PLUGIN=ml2
+Q_ML2_TENANT_NETWORK_TYPE=vlan
+ML2_VLAN_RANGES=tenant-vlan:100:200,physnet1:500:510
+
+ENABLE_TENANT_VLANS=True
+ENABLE_TENANT_TUNNELS=False
+OVS_BRIDGE_MAPPINGS=tenant-vlan:br-eth1,physnet1:br-eth2
+# To create the provider network as shared and external
+# neutron net-create public-vlan --provider:network_type vlan
+# --provider:physical_network public-vlan --provider:segmentation_id 100
+# --shared --router:external=True
+

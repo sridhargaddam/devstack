@@ -1,0 +1,37 @@
+RECLONE=yes
+DEST=/opt/stack
+#OFFLINE=True
+DATA_DIR=$DEST/data
+SCREEN_LOGDIR=$DATA_DIR/logs
+LOGFILE=$SCREEN_LOGDIR/stack.sh.log
+LOGDAYS=1
+ 
+HOST_IP=fdf8:f53b:82e4::180
+VNCSERVER_LISTEN="fdf8:f53b:82e4::180"
+VNCSERVER_PROXYCLIENT_ADDRESS="fdf8:f53b:82e4::180"
+
+ADMIN_PASSWORD=password
+MYSQL_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=token
+
+MULTI_HOST=1
+
+SERVICE_HOST=[fdf8:f53b:82e4::179]
+MYSQL_HOST=[fdf8:f53b:82e4::179]
+#Rabbitmq currently works only with hostnames
+RABBIT_HOST=IPv6Controller
+GLANCE_HOSTPORT=[fdf8:f53b:82e4::179]:9292
+
+ENABLED_SERVICES=n-cpu,q-agt,n-novnc
+
+### ML2 plugin ###
+Q_PLUGIN=ml2
+Q_ML2_TENANT_NETWORK_TYPE=vlan
+ENABLE_TENANT_VLANS=True
+ENABLE_TENANT_TUNNELS=False
+#The following may not be required on the agent side. SGM
+ML2_VLAN_RANGES=tenant-vlan:100:200,physnet1:500:510
+
+OVS_BRIDGE_MAPPINGS=tenant-vlan:br-eth1,physnet1:br-eth2
